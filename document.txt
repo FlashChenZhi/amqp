@@ -1,0 +1,24 @@
+JMS和AMQP两者的区别
+1.JMS即Java消息服务（Java Message Service）应用程序接口，是一个Java平台中关于面向消息中间件（MOM）的API，
+  用于在两个应用程序之间，或分布式系统中发送消息，进行异步通信。Java消息服务是一个与具体平台无关的API。
+2.AMQP，即Advanced Message Queuing Protocol,一个提供统一消息服务的应用层标准高级消息队列协议,
+  是应用层协议的一个开放标准,为面向消息的中间件设计。
+  基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。
+
+3.通信平台的区别
+(1).JMS:  只允许基于JAVA实现的消息平台的之间进行通信
+(2).AMQP: 允许多种消息协议进行通信,比如ruby的storm和java的jms都可以在AMQP上进行通信
+(3).结论: AMQP允许多种技术同时进行协议通信
+
+4.通信机制的区别
+(1).JMS:消息生产者和消息消费者必须知道对方的Queue
+(2).AMQP: 消息生产者和消息消费者无须知道对方的Queue,消息生产者将Exchange通过Route key和任意Queue绑定;
+          消息消费者通过Route key从任意Queue中获取Exchange.
+5. 消息传输机制的区别
+(1).JMS:JMS支持PTP和publis/subscribe机制,PTP只可以点对点通信,public/subscribe在一端发出请求后所有其他端收到消息
+(2).AMQP相关特性:
+    1 所有RouteKey相同的Queue接受到数据
+    2 所有相同的Exchange的Queue接受到数据
+    3 所有wilecard的Exchange的Queue接受到数据
+    4 可以让webservice等接受到数据
+
